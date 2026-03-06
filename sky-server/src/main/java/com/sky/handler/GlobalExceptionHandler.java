@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
+
 /**
  * 全局异常处理器，处理项目中抛出的业务异常
  */
@@ -24,4 +26,18 @@ public class GlobalExceptionHandler {
         return Result.error(ex.getMessage());
     }
 
+    /**
+     * 捕获SQL异常
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler
+    public Result exceptionHnadler(SQLException ex){
+        log.error("异常信息：{}", ex.getMessage());
+        //Duplicate entry 'zhangsan' for key 'idx_username'
+        String msg=ex.getMessage();
+        String[] split=msg.split(" ");
+        String name =split[2];
+        return Result.error(name+"已存在");
+    }
 }
