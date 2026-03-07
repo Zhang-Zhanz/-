@@ -110,7 +110,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void startOrStop(String status, String id) {
+    public void startOrStop(Integer status, Long id) {
         log.info("启用禁用员工: {},{}",status,id);
         String updateUser= String.valueOf(BaseContext.getCurrentId());
         employeeMapper.updateStatus(status,id,updateUser);
@@ -124,6 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getById(Long id) {
         log.info("根据id查询员工.{}",id);
         Employee employee = employeeMapper.getById(id);
+        employee.setPassword("****");
         return employee;
     }
     /**

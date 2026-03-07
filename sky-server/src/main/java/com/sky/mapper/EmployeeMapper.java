@@ -33,7 +33,7 @@ public interface EmployeeMapper {
             "        set status = #{status},\n" +
             "            update_time = now(),update_user=#{updateUser} -- 可选：更新修改时间\n" +
             "        where id = #{id}")
-    void updateStatus(String status, String id,String updateUser);
+    void updateStatus(Integer status, Long id,String updateUser);
 
     void update(Employee employee);
 }

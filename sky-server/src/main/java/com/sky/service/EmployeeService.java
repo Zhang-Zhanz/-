@@ -41,7 +41,7 @@ public interface EmployeeService {
      * @param id
      * @return
      */
-    void startOrStop(String status, String id);
+    void startOrStop(Integer status, Long id);
     /**
      * 根据id查询员工
      * @param id
